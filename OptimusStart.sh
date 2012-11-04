@@ -16,7 +16,7 @@ function toggleState {
    done;
 }
 
-su -c 'synergys' tjin256
+su -c 'synergys -a 127.0.0.1' tjin256
 
 # First, disable external inputs on internal screen's X server
 # Replace these with the names of your EXTERNAL input devices.
