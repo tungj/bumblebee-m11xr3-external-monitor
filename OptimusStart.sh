@@ -36,7 +36,7 @@ synergyc -n external-monitor 127.0.0.1
 
 # Start another session.  This example is using gnome-session-fallback aka Gnome Classic, look up the appropriate
 # command for your desktop environment of choice and replace 'gnome-session-fallback'.
-sudo -u "$USER" bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback > /dev/null 2>&1'
+sudo -u "$USER" bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback'
 # (this script pauses here until the new session ends)
 
 # Switch back to the internal screen's X server
