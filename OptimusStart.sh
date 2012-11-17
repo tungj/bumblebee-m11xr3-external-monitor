@@ -1,6 +1,6 @@
 #! /bin/bash
-# Starts a separate X session using Optimus
-# and uses separate input devices for each
+# Starts a separate X session using Optimus, with shared mouse/keyboard/clipboard using http://synergy-foss.org/
+# Based on https://github.com/Bumblebee-Project/Bumblebee/wiki/Multi-monitor-setup with added synergy tweaks
 
 if [[ $EUID -eq 0 ]]; then
    echo "This script really doesn't need to be run as root" 1>&2
@@ -15,6 +15,7 @@ function toggleState {
    done;
 }
 
+# Start synergy. Bind to localhost to avoid security issues with packet sniffers on the network. 
 killall synergys && sleep 0.5
 synergys -n notebook-monitor -a 127.0.0.1
 
@@ -24,11 +25,9 @@ ORIGDISPLAY=$DISPLAY
 DISPLAY=':8'  #<-- This should be the value of 'VirtualDisplay' from earlier.
 
 # Disable internal inputs
-# Replace these with the names of your INTERNAL input devices
+# Replace these with the names of your INTERNAL input devices, e.g. from xinput -list
 toggleState "AT Translated Set 2 keyboard" 0
 toggleState 'SynPS/2 Synaptics TouchPad' 0
-
-# OWN HACK-Disable everything, use synergy
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
 killall synergyc && sleep 0.5; 
