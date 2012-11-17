@@ -16,7 +16,7 @@ function toggleState {
 }
 
 killall synergys && sleep 0.5
-synergys -a 127.0.0.1
+synergys -n notebook-monitor -a 127.0.0.1
 
 # First, disable external inputs on internal screen's X server
 # Replace these with the names of your EXTERNAL input devices.
@@ -37,7 +37,7 @@ toggleState 'SynPS/2 Synaptics TouchPad' 0
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
 killall synergyc && sleep 0.5; 
-synergyc -n tjin256-monitor 127.0.0.1
+synergyc -n external-monitor 127.0.0.1
 
 # Start another session.  This example is for XFCE or Xubuntu, look up the appropriate
 # command for your desktop environment of choice and replace 'xfce4-session'.
