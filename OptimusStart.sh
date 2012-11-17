@@ -1,10 +1,9 @@
 #! /bin/bash
 # Starts a separate X session using Optimus
 # and uses separate input devices for each
-# must be run as root, with 'optirun'
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
+if [[ $EUID -eq 0 ]]; then
+   echo "This script really doesn't need to be run as root" 1>&2
    exit 1
 fi
 
@@ -17,7 +16,7 @@ function toggleState {
 }
 
 killall synergys && sleep 0.5
-su -c 'synergys -a 127.0.0.1' tjin256
+synergys -a 127.0.0.1
 
 # First, disable external inputs on internal screen's X server
 # Replace these with the names of your EXTERNAL input devices.
@@ -37,17 +36,13 @@ toggleState 'SynPS/2 Synaptics TouchPad' 0
 # OWN HACK-Disable everything, use synergy
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
-su -c /home/tjin256/Optimus/autostart/synergyc_start.sh tjin256
+/home/tjin256/Optimus/autostart/synergyc_start.sh
 
 # Start another session.  This example is for XFCE or Xubuntu, look up the appropriate
 # command for your desktop environment of choice and replace 'xfce4-session'.
 # Remember to replace USERNAME with your username.
 #su -c xfce4-session tjin256 > /dev/null 2>&1
-
-#su -c 'gnome-session-fallback -a=/home/tjin256/Optimus/autostart' tjin256   
-#su -c 
-su -c 'gnome-session-fallback' tjin256  > /dev/null 2>&1
-#su -c 'GNOME_KEYRING_CONTROL='"$GNOME_KEYRING_CONTROL"'; gnome-session-fallback' tjin256  > /dev/null 2>&1
+sudo -u tjin256 bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback'
 # (this script pauses here until the new session ends)
 
 # Switch back to the internal screen's X server
