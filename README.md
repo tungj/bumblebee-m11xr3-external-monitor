@@ -14,6 +14,7 @@ Setup
 -------
 
 These instructions are designed for a Ubuntu 12.04 m11xR3 using Gnome Classic connecting to a LG Electronics W1953 monitor, it's probable that you might want to change the xorg files for your monitor and the OptimusStart.sh to match your keyboard/mouse names. 
+
     # Get a copy of these files
     cd ~
     git clone git://github.com/tungj/bumblebee-m11xr3-external-monitor.git Optimus
