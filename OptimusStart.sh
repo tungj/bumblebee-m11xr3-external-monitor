@@ -36,6 +36,8 @@ toggleState 'SynPS/2 Synaptics TouchPad' 0
 # OWN HACK-Disable everything, use synergy
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
+
+# Enable synergy. Here, tjin256-monitor is the name of a synergy screen specified in ~/.synergy.conf
 killall synergyc && sleep 0.5; 
 synergyc -n tjin256-monitor 127.0.0.1
 
