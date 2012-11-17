@@ -36,13 +36,14 @@ toggleState 'SynPS/2 Synaptics TouchPad' 0
 # OWN HACK-Disable everything, use synergy
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
-/home/tjin256/Optimus/autostart/synergyc_start.sh
+killall synergyc && sleep 0.5; 
+synergyc -n tjin256-monitor 127.0.0.1
 
 # Start another session.  This example is for XFCE or Xubuntu, look up the appropriate
 # command for your desktop environment of choice and replace 'xfce4-session'.
 # Remember to replace USERNAME with your username.
 #su -c xfce4-session tjin256 > /dev/null 2>&1
-sudo -u tjin256 bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback'
+sudo -u "$USER" bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback'
 # (this script pauses here until the new session ends)
 
 # Switch back to the internal screen's X server
