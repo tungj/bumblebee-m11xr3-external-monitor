@@ -25,7 +25,7 @@ ORIGDISPLAY=$DISPLAY
 DISPLAY=':8'  #<-- This should be the value of 'VirtualDisplay' from earlier.
 
 # Disable internal inputs
-# Replace these with the names of your INTERNAL input devices, e.g. from xinput -list
+# Replace these with the names of your input devices, e.g. from xinput -list
 toggleState "AT Translated Set 2 keyboard" 0
 toggleState 'SynPS/2 Synaptics TouchPad' 0
 toggleState "Mouse USB Laser Mouse" 0
