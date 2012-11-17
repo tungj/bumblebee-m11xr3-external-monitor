@@ -16,6 +16,7 @@ function toggleState {
    done;
 }
 
+killall synergys && sleep 0.5
 su -c 'synergys -a 127.0.0.1' tjin256
 
 # First, disable external inputs on internal screen's X server
@@ -36,7 +37,7 @@ toggleState 'SynPS/2 Synaptics TouchPad' 0
 # OWN HACK-Disable everything, use synergy
 toggleState "Mouse USB Laser Mouse" 0
 toggleState "CHICONY USB Keyboard" 0
-/home/tjin256/Optimus/autostart/synergyc_start.sh
+su -c /home/tjin256/Optimus/autostart/synergyc_start.sh tjin256
 
 # Start another session.  This example is for XFCE or Xubuntu, look up the appropriate
 # command for your desktop environment of choice and replace 'xfce4-session'.
@@ -44,7 +45,9 @@ toggleState "CHICONY USB Keyboard" 0
 #su -c xfce4-session tjin256 > /dev/null 2>&1
 
 #su -c 'gnome-session-fallback -a=/home/tjin256/Optimus/autostart' tjin256   
+#su -c 
 su -c 'gnome-session-fallback' tjin256  > /dev/null 2>&1
+#su -c 'GNOME_KEYRING_CONTROL='"$GNOME_KEYRING_CONTROL"'; gnome-session-fallback' tjin256  > /dev/null 2>&1
 # (this script pauses here until the new session ends)
 
 # Switch back to the internal screen's X server
