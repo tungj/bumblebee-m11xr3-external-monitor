@@ -18,11 +18,6 @@ function toggleState {
 killall synergys && sleep 0.5
 synergys -n notebook-monitor -a 127.0.0.1
 
-# First, disable external inputs on internal screen's X server
-# Replace these with the names of your EXTERNAL input devices.
-#toggleState "Mouse USB Laser Mouse" 0
-#toggleState "CHICONY USB Keyboard" 0
-
 # Save current DISPLAY variable so we can use it later
 ORIGDISPLAY=$DISPLAY
 # Set display ID to the external screen's X server
@@ -39,18 +34,10 @@ toggleState "CHICONY USB Keyboard" 0
 killall synergyc && sleep 0.5; 
 synergyc -n external-monitor 127.0.0.1
 
-# Start another session.  This example is for XFCE or Xubuntu, look up the appropriate
-# command for your desktop environment of choice and replace 'xfce4-session'.
-# Remember to replace USERNAME with your username.
-#su -c xfce4-session tjin256 > /dev/null 2>&1
-sudo -u "$USER" bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback'
+# Start another session.  This example is using gnome-session-fallback aka Gnome Classic, look up the appropriate
+# command for your desktop environment of choice and replace 'gnome-session-fallback'.
+sudo -u "$USER" bash -c 'export GNOME_KEYRING_CONTROL="'"$GNOME_KEYRING_CONTROL"'"; export GNOME_KEYRING_PID="'"$GNOME_KEYRING_PID"'"; export SSH_AUTH_SOCK="'"$SSH_AUTH_SOCK"'"; export GPG_AGENT_INFO="'"$GPG_AGENT_INFO"'"; gnome-session-fallback > /dev/null 2>&1'
 # (this script pauses here until the new session ends)
 
 # Switch back to the internal screen's X server
 DISPLAY=$ORIGDISPLAY
-
-# Re-enable external inputs on the internal screen's X server
-
-#toggleState "Mouse USB Laser Mouse" 1
-#toggleState "CHICONY USB Keyboard" 1
-
